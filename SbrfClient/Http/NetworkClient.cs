@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -79,8 +80,27 @@ namespace SbrfClient.Http
                 string result = sr.ReadToEnd();
                 return (T) JsonConvert.DeserializeObject<T>(result);
             }
-
-
         }
-    }
+
+        public static string ObjectToQueryString(object obj)
+        {
+            string result = "";
+            var properties = GetProperties(obj);
+
+            foreach (var p in properties)
+            {
+                var value = p.GetValue(obj, null);
+                var name = p.Name;
+                result += $"{name}={value}&" ;
+            }
+            return result;
+        }
+
+        
+
+        private static PropertyInfo[] GetProperties(object obj)
+        {
+            return obj.GetType().GetProperties();
+        }
+}
 }
