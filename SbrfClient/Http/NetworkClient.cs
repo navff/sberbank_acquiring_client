@@ -65,6 +65,7 @@ namespace SbrfClient.Http
             var json = JsonConvert.SerializeObject(objectForSend);
             Console.WriteLine(json);
             request.ContentLength = json.Length;
+            request.ServerCertificateValidationCallback = delegate { return true; };
 
             byte[] byteArray = Encoding.UTF8.GetBytes(json);
             request.ContentLength = byteArray.Length;
