@@ -38,14 +38,14 @@ namespace Tests
         {
             return new RegisterRequest
             {
-                UserName = _settings.Username,
-                Password = _settings.Password,
-                Amount = 123,
-                PageView = "DESKTOP",
-                Currency = 643,
-                FailUrl = "http://33kita.ru",
-                ReturnUrl = "http://33kita.ru",
-                OrderNumber = Guid.NewGuid().ToString()
+                userName = _settings.Username,
+                password = _settings.Password,
+                amount = 123,
+                pageView = "DESKTOP",
+                currency = 643,
+                failUrl = "http://33kita.ru",
+                returnUrl = "http://33kita.ru",
+                orderNumber = Guid.NewGuid().ToString().Replace("-", "")
             };
         }
 
@@ -54,7 +54,7 @@ namespace Tests
         {
             var obj = CreateRegisterRequest();
             string result = NetworkClient.ObjectToQueryString(obj);
-            Assert.IsTrue(result.Contains(obj.Password));
+            Assert.IsTrue(result.Contains(obj.password));
             TestContext.WriteLine(result);
         }
     }

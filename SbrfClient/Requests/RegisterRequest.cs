@@ -15,30 +15,30 @@ namespace SbrfClient.Requests
         /// <summary>
         /// Логин магазина, полученный при подключении
         /// </summary>
-        public string UserName { get; set; }
+        public string userName { get; set; }
 
 
         /// <summary>
         /// Пароль магазина, полученный при подключении
         /// </summary>
-        public string Password { get; set; }
+        public string password { get; set; }
 
         /// <summary>
         /// Номер (идентификатор) заказа в системе магазина, уникален для каждого магазина в пределах
         /// системы.Если номер заказа генерируется на стороне платёжного шлюза, этот параметр передавать
         /// необязательно.
         /// </summary>
-        public string OrderNumber { get; set; }
+        public string orderNumber { get; set; }
 
         /// <summary>
         /// Сумма платежа в копейках (или центах)
         /// </summary>
-        public int Amount { get; set; }
+        public int amount { get; set; }
 
         /// <summary>
         /// Код валюты платежа ISO 4217. Если не указан, считается равным коду валюты по умолчанию
         /// </summary>
-        public int Currency { get; set; }
+        public int currency { get; set; }
 
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace SbrfClient.Requests
         /// t.ru). В противном случае пользователь будет перенаправлен по адресу следующего вида: http://&lt;ад
         /// рес_платёжного_шлюза&gt;/&lt;адрес_продавца&gt;.
         /// </summary>
-        public string ReturnUrl { get; set; }
+        public string returnUrl { get; set; }
 
         /// <summary>
         /// Адрес, на который требуется перенаправить пользователя в случае неуспешной оплаты. Адрес
@@ -55,21 +55,21 @@ namespace SbrfClient.Requests
         /// t.ru). В противном случае пользователь будет перенаправлен по адресу следующего вида: http://&lt;ад
         /// рес_платёжного_шлюза&gt;/&lt;адрес_продавца&gt;.
         /// </summary>
-        public string FailUrl { get; set; }
+        public string failUrl { get; set; }
 
         /// <summary>
         /// Описание заказа в свободной форме. В процессинг банка для включения в финансовую отчётность
         /// продавца передаются только первые 24 символа этого поля. Чтобы получить возможность отправлять это поле в процессинг, обратитесь в
         /// техническую поддержку.
         /// </summary>
-        public string Description { get; set; }
+        public string description { get; set; }
 
 
         /// <summary>
         /// Язык в кодировке ISO 639-1. Если не указан, будет использован язык, указанный в настройках
         /// магазина как язык по умолчанию (default language)
         /// </summary>
-        public string Language { get; set; }
+        public string language { get; set; }
 
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace SbrfClient.Requests
         /// Если параметр отсутствует, либо не соответствует формату, то по умолчанию считается pageView=
         /// DESKTOP
         /// </summary>
-        public string PageView { get; set; }
+        public string pageView { get; set; }
 
         /// <summary>
         /// Номер (идентификатор) клиента в системе магазина. Используется для реализации функционала
@@ -104,12 +104,12 @@ namespace SbrfClient.Requests
         /// Указание этого параметра при платежах по связке необходимо - в противном случае
         /// платёж будет неуспешен.
         /// </summary>
-        public string ClientId { get; set; }
+        public string clientId { get; set; }
 
         /// <summary>
         /// Чтобы зарегистрировать заказ от имени дочернего мерчанта, укажите его логин в этом параметре
         /// </summary>
-        public string MerchantLogin { get; set; }
+        public string merchantLogin { get; set; }
 
         /// <summary>
         /// Блок для передачи дополнительных параметров мерчанта. Поля дополнительной информации для
@@ -120,7 +120,7 @@ namespace SbrfClient.Requests
         /// Если для продавца настроена отправка уведомлений покупателю, адрес электронной почты
         /// покупателя должен передаваться в этом блоке в параметре с именем email.
         /// </summary>
-        public string JsonParams { get; set; }
+        public string jsonParams { get; set; }
 
         /// <summary>
         /// Продолжительность жизни заказа в секундах.
@@ -129,14 +129,14 @@ namespace SbrfClient.Requests
         /// Если в запросе присутствует параметр expirationDate, то значение параметра sessionTimeout
         /// Secs не учитывается.
         /// </summary>
-        public int SessionTimeoutSecs { get; set; }
+        public int sessionTimeoutSecs { get; set; }
 
         /// <summary>
         /// Дата и время окончания жизни заказа. Формат: yyyy-MM-ddTHH:mm:ss.
         /// Если этот параметр не передаётся в запросе, то для определения времени окончания жизни заказа
         /// используется sessionTimeoutSecs .
         /// </summary>
-        public string ExpirationDate { get; set; }
+        public string expirationDate { get; set; }
 
         /// <summary>
         /// Идентификатор связки, созданной ранее. Может использоваться, только если у магазина есть
@@ -145,7 +145,7 @@ namespace SbrfClient.Requests
         /// 1. Данный заказ может быть оплачен только с помощью связки;
         /// 2. Плательщик будет перенаправлен на платёжную страницу, где требуется только ввод CVC
         /// </summary>
-        public string BindingId { get; set;  }
+        public string bindingId { get; set;  }
 
         /// <summary>
         /// Возможно использование следующих значений.
@@ -160,6 +160,6 @@ namespace SbrfClient.Requests
         /// покупателя. После успешной регистрации заказ сразу переводится в статус REVERSED
         /// (отменён).
         /// </summary>
-        public string Features { get; set; }
+        public string features { get; set; }
     }
 }
