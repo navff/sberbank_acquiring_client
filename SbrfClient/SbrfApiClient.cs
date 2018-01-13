@@ -21,7 +21,7 @@ namespace SbrfClient
         {
 
             var url = _settings.BaseUrl + "/register.do";
-            var result = _networkClient.PostObject<RegisterResponse>(url, request);
+            var result = _networkClient.PostObjectViaUrlParams<RegisterResponse>(url, request);
             return result;
         }
 

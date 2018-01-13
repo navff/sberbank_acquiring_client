@@ -56,7 +56,7 @@ namespace SbrfClient.Http
         /// </summary>
         /// <typeparam name="T">Тип возвращаемого объекта, который мы ожидаем</typeparam>
         /// <returns>Ответ сервера, преобразованный в тип T</returns>
-        public T PostObject<T>(string url, object objectForSend, string method = "POST")
+        public T PostObjectViaJson<T>(string url, object objectForSend, string method = "POST")
         {
             Console.WriteLine(url);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -79,6 +79,33 @@ namespace SbrfClient.Http
             {
                 string result = sr.ReadToEnd();
                 return (T) JsonConvert.DeserializeObject<T>(result);
+            }
+        }
+
+        /// <summary>
+        /// Отправляет JSON-объект на определённый урл
+        /// </summary>
+        /// <typeparam name="T">Тип возвращаемого объекта, который мы ожидаем</typeparam>
+        /// <returns>Ответ сервера, преобразованный в тип T</returns>
+        public T PostObjectViaUrlParams<T>(string url, object objectForSend, string method = "POST")
+        {
+            
+            var urlParams = ObjectToQueryString(objectForSend);
+            url += "?" + urlParams;
+            Console.WriteLine(url);
+            
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = method;
+            request.ContentType = "application/json";
+
+            
+            request.ServerCertificateValidationCallback = delegate { return true; };
+
+            HttpWebResponse getResponse = (HttpWebResponse)request.GetResponse();
+            using (StreamReader sr = new StreamReader(getResponse.GetResponseStream()))
+            {
+                string result = sr.ReadToEnd();
+                return (T)JsonConvert.DeserializeObject<T>(result);
             }
         }
 
