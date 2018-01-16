@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Params\RegisterParams.cs" />
+    <Compile Include="Params\ReverseParams.cs" />
+    <Compile Include="Requests\ReverseRequest.cs" />
     <Compile Include="Response\RegisterResponse.cs" />
+    <Compile Include="Response\ReverseResponse.cs" />
     <Compile Include="SbrfSettings.cs" />
     <Compile Include="Requests\RegisterRequest.cs" />
     <Compile Include="SbrfApiClient.cs" />

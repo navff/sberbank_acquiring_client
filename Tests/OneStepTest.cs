@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using SbrfClient;
 using SbrfClient.Http;
+using SbrfClient.Params;
 using SbrfClient.Requests;
 
 namespace Tests
@@ -29,17 +30,40 @@ namespace Tests
         public void Register_Ok_Test()
         {
             var client = new SbrfApiClient(_settings);
-            var result = client.Register(CreateRegisterRequest());
+            var result = client.Register(CreateRegisterParams());
             TestContext.WriteLine(JsonConvert.SerializeObject(result));
         }
 
-
-        private RegisterRequest CreateRegisterRequest()
+        [TestMethod]
+        public void Reverse_Ok_Test()
         {
-            return new RegisterRequest
+            var client = new SbrfApiClient(_settings);
+            var result = client.Reverse(new ReverseParams
             {
-                userName = _settings.Username,
-                password = _settings.Password,
+                orderId = "613e5f12-c4bb-701c-613e-5f12000be085",
+                language = "ru"
+            });
+            TestContext.WriteLine(JsonConvert.SerializeObject(result.ErrorCode==6));
+        }
+
+        [TestMethod]
+        public void Reverse_WrongOrderId_Test()
+        {
+            var client = new SbrfApiClient(_settings);
+            var result = client.Reverse(new ReverseParams
+            {
+                orderId = "123",
+                language = "ru"
+            });
+            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            Assert.AreEqual(6, result.ErrorCode);
+        }
+
+
+        private RegisterParams CreateRegisterParams()
+        {
+            return new RegisterParams
+            {
                 amount = 123,
                 pageView = "DESKTOP",
                 currency = 643,
@@ -52,9 +76,9 @@ namespace Tests
         [TestMethod]
         public void ObjectToQueryString_Ok_Test()
         {
-            var obj = CreateRegisterRequest();
+            var obj = CreateRegisterParams();
             string result = NetworkClient.ObjectToQueryString(obj);
-            Assert.IsTrue(result.Contains(obj.password));
+            Assert.IsTrue(result.Contains(obj.orderNumber));
             TestContext.WriteLine(result);
         }
     }
