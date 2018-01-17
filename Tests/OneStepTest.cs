@@ -81,5 +81,43 @@ namespace Tests
             Assert.IsTrue(result.Contains(obj.orderNumber));
             TestContext.WriteLine(result);
         }
+
+        [TestMethod]
+        public void Refund_WrongOrderId_Test()
+        {
+            var client = new SbrfApiClient(_settings);
+            var result = client.Refund(new RefundParams
+            {
+                orderId = "123",
+                amount = 10
+            });
+            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            Assert.AreEqual(6, result.ErrorCode);
+        }
+
+        [TestMethod]
+        public void Refund_Ok_Test()
+        {
+            var client = new SbrfApiClient(_settings);
+            var result = client.Refund(new RefundParams
+            {
+                orderId = "1a080048-9243-7176-1a08-0048000be085",
+                amount = 10
+            });
+            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            //Assert.AreEqual(6, result.ErrorCode);
+        }
+
+        [TestMethod]
+        public void GetOrderStatus_Ok_Test()
+        {
+            var client = new SbrfApiClient(_settings);
+            var result = client.GetOrderStatus(new GetOrderStatusParams
+            {
+                orderId = "1a080048-9243-7176-1a08-0048000be085"
+            });
+            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            //Assert.AreEqual(6, result.ErrorCode);
+        }
     }
 }

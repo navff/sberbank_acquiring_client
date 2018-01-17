@@ -18,6 +18,10 @@ namespace SbrfClient
             _networkClient = new NetworkClient();
         }
 
+
+        /// <summary>
+        /// Иницциирование одностадийной оплаты заказа
+        /// </summary>
         public RegisterResponse Register(RegisterParams registerParams)
         {
 
@@ -29,6 +33,13 @@ namespace SbrfClient
             return result;
         }
 
+        /// <summary>
+        /// Для запроса отмены оплаты заказа используется запрос reverse.do. Функция отмены доступна в течение ограниченного времени
+        /// после оплаты, точные сроки необходимо уточнять в Банке.
+        /// Операция отмены оплаты может быть совершена только один раз. Если она закончится ошибкой, то повторная операция отмены
+        /// платежа не пройдет. Данная функция доступна магазинам по согласованию с Банком. Для выполнения операции отмены пользователь должен обладать
+        /// соответствующими правами.
+        /// </summary>
         public ReverseResponse Reverse(ReverseParams reverseParams)
         {
             var url = _settings.BaseUrl + "/reverse.do";
@@ -41,5 +52,35 @@ namespace SbrfClient
         }
 
 
+        /// <summary>
+        /// По этому запросу средства по указанному заказу будут возвращены плательщику. Запрос закончится ошибкой в случае, если средства
+        /// по этому заказу не были списаны. Система позволяет возвращать средства более одного раза, но в общей сложности не более
+        /// первоначальной суммы списания.
+        /// Для выполнения операции возврата необходимо наличие соответствующих права в системе
+        /// </summary>
+        public RefundResponse Refund(RefundParams refundParams)
+        {
+            var url = _settings.BaseUrl + "/refund.do";
+            var request = new RefundRequest(refundParams);
+            request.userName = _settings.Username;
+            request.password = _settings.Password;
+
+            var result = _networkClient.PostObjectViaUrlParams<RefundResponse>(url, request);
+            return result;
+        }
+
+        /// <summary>
+        /// Получает текущее состояние заказа
+        /// </summary>
+        public GetOrderStatusResponse GetOrderStatus(GetOrderStatusParams getOrderStatusParams)
+        {
+            var url = _settings.BaseUrl + "/getOrderStatus.do";
+            var request = new GetOrderStatusRequest(getOrderStatusParams);
+            request.userName = _settings.Username;
+            request.password = _settings.Password;
+
+            var result = _networkClient.PostObjectViaUrlParams<GetOrderStatusResponse>(url, request);
+            return result;
+        }
     }
 }

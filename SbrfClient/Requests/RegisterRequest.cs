@@ -11,7 +11,7 @@ namespace SbrfClient.Requests
     /// 8.2.1. Запрос регистрации заказа
     /// Для регистрации заказа используется запрос register.do 
     /// </summary>
-    public class RegisterRequest : RegisterParams
+    internal class RegisterRequest : RegisterParams
     {
         /// <summary>
         /// Логин магазина, полученный при подключении

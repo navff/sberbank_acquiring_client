@@ -7,15 +7,15 @@ using SbrfClient.Params;
 
 namespace SbrfClient.Requests
 {
-    internal class ReverseRequest : ReverseParams
+    internal class GetOrderStatusRequest : GetOrderStatusParams
     {
         public string userName { get; set; }
         public string password { get; set; }
 
-        public ReverseRequest(ReverseParams reverseParams)
+        public GetOrderStatusRequest(GetOrderStatusParams getOrderStatusParams)
         {
-            this.orderId = reverseParams.orderId;
-            this.language = reverseParams.language;
+            this.orderId = getOrderStatusParams.orderId;
+            this.language = getOrderStatusParams.language;
         }
     }
 }
