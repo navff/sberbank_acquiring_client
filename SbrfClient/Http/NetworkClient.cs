@@ -97,16 +97,28 @@ namespace SbrfClient.Http
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = method;
             request.ContentType = "application/json";
-
-            
+            request.Proxy = null;
+            request.KeepAlive = false;
+            request.ProtocolVersion = HttpVersion.Version10;
+            request.ServicePoint.ConnectionLimit = 1;
+            request.Headers.Add("UserAgent", "Pentia; MSI");
             request.ServerCertificateValidationCallback = delegate { return true; };
 
-            HttpWebResponse getResponse = (HttpWebResponse)request.GetResponse();
-            using (StreamReader sr = new StreamReader(getResponse.GetResponseStream()))
+            try
             {
-                string result = sr.ReadToEnd();
-                return (T)JsonConvert.DeserializeObject<T>(result);
+                HttpWebResponse getResponse = (HttpWebResponse)request.GetResponse();
+                using (StreamReader sr = new StreamReader(getResponse.GetResponseStream()))
+                {
+                    string result = sr.ReadToEnd();
+                    return (T)JsonConvert.DeserializeObject<T>(result);
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
 
         public static string ObjectToQueryString(object obj)
