@@ -48,6 +48,7 @@
     <Compile Include="Params\RefundParams.cs" />
     <Compile Include="Params\RegisterParams.cs" />
     <Compile Include="Params\ReverseParams.cs" />
+    <Compile Include="Params\VerifyEnrollmentParams.cs" />
     <Compile Include="Requests\GetOrderStatusExtendedRequest.cs" />
     <Compile Include="Requests\GetOrderStatusRequest.cs" />
     <Compile Include="Requests\RefundRequest.cs" />
