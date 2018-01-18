@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Cache;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
@@ -93,7 +94,10 @@ namespace SbrfClient.Http
             var urlParams = ObjectToQueryString(objectForSend);
             url += "?" + urlParams;
             Console.WriteLine(url);
-            
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls 
+                                                   | SecurityProtocolType.Tls11
+                                                   | SecurityProtocolType.Tls12;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = method;
             request.ContentType = "application/json";
@@ -102,7 +106,8 @@ namespace SbrfClient.Http
             request.ProtocolVersion = HttpVersion.Version10;
             request.ServicePoint.ConnectionLimit = 1;
             request.Headers.Add("UserAgent", "Pentia; MSI");
-            request.ServerCertificateValidationCallback = delegate { return true; };
+            // request.ServerCertificateValidationCallback = delegate { return true; };
+            
 
             try
             {

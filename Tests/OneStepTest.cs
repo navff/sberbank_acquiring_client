@@ -130,7 +130,7 @@ namespace Tests
             {
                 orderId = "da8a081a-6beb-7d5b-da8a-081a000be085"
             });
-            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            Console.WriteLine(JsonConvert.SerializeObject(result));
             //Assert.AreEqual(6, result.ErrorCode);
         }
     }

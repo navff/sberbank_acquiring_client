@@ -99,7 +99,8 @@ namespace SbrfClient.Response
 
         /// <summary>
         /// Предавторизованная сумма захолдирована (для двухстадийных
-        /// платежей);        /// </summary>
+        /// платежей);
+        /// </summary>
         Holded = 1,
 
         /// <summary>
