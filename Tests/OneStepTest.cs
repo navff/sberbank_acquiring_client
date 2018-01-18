@@ -31,11 +31,11 @@ namespace Tests
         {
             var client = new SbrfApiClient(_settings);
             var result = client.Register(CreateRegisterParams());
-            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            Console.Out.WriteLine(JsonConvert.SerializeObject(result));
         }
 
         [TestMethod]
-        public void Reverse_Ok_Test()
+        public void Reverse_Error_Test()
         {
             var client = new SbrfApiClient(_settings);
             var result = client.Reverse(new ReverseParams
@@ -43,7 +43,8 @@ namespace Tests
                 orderId = "613e5f12-c4bb-701c-613e-5f12000be085",
                 language = "ru"
             });
-            TestContext.WriteLine(JsonConvert.SerializeObject(result.ErrorCode==6));
+            Console.Out.WriteLine(JsonConvert.SerializeObject(result));
+            Assert.AreEqual(5, result.ErrorCode);
         }
 
         [TestMethod]
@@ -55,7 +56,7 @@ namespace Tests
                 orderId = "123",
                 language = "ru"
             });
-            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            Console.Out.WriteLine(JsonConvert.SerializeObject(result));
             Assert.AreEqual(6, result.ErrorCode);
         }
 
@@ -79,7 +80,7 @@ namespace Tests
             var obj = CreateRegisterParams();
             string result = NetworkClient.ObjectToQueryString(obj);
             Assert.IsTrue(result.Contains(obj.orderNumber));
-            TestContext.WriteLine(result);
+            Console.Out.WriteLine(result);
         }
 
         [TestMethod]
@@ -91,7 +92,7 @@ namespace Tests
                 orderId = "123",
                 amount = 10
             });
-            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            Console.Out.WriteLine(JsonConvert.SerializeObject(result));
             Assert.AreEqual(6, result.ErrorCode);
         }
 
@@ -104,7 +105,7 @@ namespace Tests
                 orderId = "1a080048-9243-7176-1a08-0048000be085",
                 amount = 10
             });
-            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            Console.Out.WriteLine(JsonConvert.SerializeObject(result));
             //Assert.AreEqual(6, result.ErrorCode);
         }
 
@@ -116,7 +117,8 @@ namespace Tests
             {
                 orderId = "1a080048-9243-7176-1a08-0048000be085"
             });
-            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            var txt = JsonConvert.SerializeObject(result);
+            Console.Out.WriteLine(txt);
             //Assert.AreEqual(6, result.ErrorCode);
         }
     }
