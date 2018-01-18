@@ -79,7 +79,7 @@ namespace SbrfClient
             request.userName = _settings.Username;
             request.password = _settings.Password;
 
-            var result = _networkClient.PostObjectViaUrlParams<GetOrderStatusResponse>(url, request);
+            var result = _networkClient.PostObjectViaUrlParams<GetOrderStatusResponse>(url, request, "GET");
             return result;
         }
 
