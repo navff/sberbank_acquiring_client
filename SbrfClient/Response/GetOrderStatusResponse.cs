@@ -63,7 +63,8 @@ namespace SbrfClient.Response
 
         /// <summary>
         /// Это поле является устаревшим. Его значение всегда равно "2", независимо от состояния заказа и
-        /// кода авторизации процессинговой системы.        /// </summary>
+        /// кода авторизации процессинговой системы.
+        /// </summary>
         public int authCode { get; set; }
 
         /// <summary>
@@ -97,6 +98,23 @@ namespace SbrfClient.Response
         /// только если магазину разрешено создание связок
         /// </summary>
         public string bindingId { get; set; }
+
+        /// <summary>
+        ///  Дата/время авторизации
+        /// (только для запроса Extended)
+        /// </summary>
+        public string authDateTime { get; set; }
+
+        /// <summary>
+        /// Учётный номер авторизации платежа, который присваивается при
+        /// регистрации платежа (только для запроса Extended)
+        /// </summary>
+        public string authRefNum { get; set; }
+
+        /// <summary>
+        ///  Id терминала
+        /// </summary>
+        public string terminalId { get; set; }
     }
 
 }

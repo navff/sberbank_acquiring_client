@@ -82,5 +82,19 @@ namespace SbrfClient
             var result = _networkClient.PostObjectViaUrlParams<GetOrderStatusResponse>(url, request);
             return result;
         }
+
+        /// <summary>
+        /// Получает подробное текущее состояние заказа
+        /// </summary>
+        public GetOrderStatusExtendedResponse GetOrderStatusExtended(GetOrderStatusExtendedParams getOrderStatusParams)
+        {
+            var url = _settings.BaseUrl + "/getOrderStatusExtended.do";
+            var request = new GetOrderStatusExtendedRequest(getOrderStatusParams);
+            request.userName = _settings.Username;
+            request.password = _settings.Password;
+
+            var result = _networkClient.PostObjectViaUrlParams<GetOrderStatusExtendedResponse>(url, request);
+            return result;
+        }
     }
 }

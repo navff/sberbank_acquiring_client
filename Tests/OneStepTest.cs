@@ -119,5 +119,17 @@ namespace Tests
             TestContext.WriteLine(JsonConvert.SerializeObject(result));
             //Assert.AreEqual(6, result.ErrorCode);
         }
+
+        [TestMethod]
+        public void GetOrderStatusExtended_Ok_Test()
+        {
+            var client = new SbrfApiClient(_settings);
+            var result = client.GetOrderStatusExtended(new GetOrderStatusExtendedParams
+            {
+                orderId = "da8a081a-6beb-7d5b-da8a-081a000be085"
+            });
+            TestContext.WriteLine(JsonConvert.SerializeObject(result));
+            //Assert.AreEqual(6, result.ErrorCode);
+        }
     }
 }
