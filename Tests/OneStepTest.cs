@@ -131,6 +131,29 @@ namespace Tests
                 orderId = "da8a081a-6beb-7d5b-da8a-081a000be085"
             });
             Console.WriteLine(JsonConvert.SerializeObject(result));
+        }
+
+        [TestMethod]
+        public void VerifyEnrollment_Ok_Test()
+        {
+            var client = new SbrfApiClient(_settings);
+            var result = client.VerifyEnrollment(new VerifyEnrollmentParams{ pan = "4111111111111111" });
+            Console.WriteLine(JsonConvert.SerializeObject(result));
+            //Assert.AreEqual(6, result.ErrorCode);
+        }
+
+        [TestMethod]
+        public void GetLastOrdersForMerchants_Ok_Test()
+        {
+            var client = new SbrfApiClient(_settings);
+            var result = client.GetLastOrdersForMerchants(new GetLastOrdersForMerchantsParams
+            {
+                size = 50,
+                from = "20180101000001", //YYYYMMDDHHmmss
+                to = "20190101000001",
+                transactionStates = " CREATED,APPROVED,DEPOSITED,DECLINED,REVERSED,REFUNDED",
+            });
+            Console.WriteLine(JsonConvert.SerializeObject(result));
             //Assert.AreEqual(6, result.ErrorCode);
         }
     }

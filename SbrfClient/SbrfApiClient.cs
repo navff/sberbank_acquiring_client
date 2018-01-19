@@ -26,9 +26,11 @@ namespace SbrfClient
         {
 
             var url = _settings.BaseUrl + "/register.do";
-            RegisterRequest request = new RegisterRequest(registerParams); 
-            request.userName = _settings.Username;
-            request.password = _settings.Password;
+            RegisterRequest request = new RegisterRequest(registerParams)
+            {
+                userName = _settings.Username,
+                password = _settings.Password
+            };
             var result = _networkClient.PostObjectViaUrlParams<RegisterResponse>(url, request);
             return result;
         }
@@ -43,9 +45,11 @@ namespace SbrfClient
         public ReverseResponse Reverse(ReverseParams reverseParams)
         {
             var url = _settings.BaseUrl + "/reverse.do";
-            var request = new ReverseRequest(reverseParams);
-            request.userName = _settings.Username;
-            request.password = _settings.Password;
+            var request = new ReverseRequest(reverseParams)
+            {
+                userName = _settings.Username,
+                password = _settings.Password
+            };
 
             var result = _networkClient.PostObjectViaUrlParams<ReverseResponse>(url, request);
             return result;
@@ -61,9 +65,11 @@ namespace SbrfClient
         public RefundResponse Refund(RefundParams refundParams)
         {
             var url = _settings.BaseUrl + "/refund.do";
-            var request = new RefundRequest(refundParams);
-            request.userName = _settings.Username;
-            request.password = _settings.Password;
+            var request = new RefundRequest(refundParams)
+            {
+                userName = _settings.Username,
+                password = _settings.Password
+            };
 
             var result = _networkClient.PostObjectViaUrlParams<RefundResponse>(url, request);
             return result;
@@ -75,9 +81,11 @@ namespace SbrfClient
         public GetOrderStatusResponse GetOrderStatus(GetOrderStatusParams getOrderStatusParams)
         {
             var url = _settings.BaseUrl + "/getOrderStatus.do";
-            var request = new GetOrderStatusRequest(getOrderStatusParams);
-            request.userName = _settings.Username;
-            request.password = _settings.Password;
+            var request = new GetOrderStatusRequest(getOrderStatusParams)
+            {
+                userName = _settings.Username,
+                password = _settings.Password
+            };
 
             var result = _networkClient.PostObjectViaUrlParams<GetOrderStatusResponse>(url, request, "GET");
             return result;
@@ -89,11 +97,45 @@ namespace SbrfClient
         public GetOrderStatusExtendedResponse GetOrderStatusExtended(GetOrderStatusExtendedParams getOrderStatusParams)
         {
             var url = _settings.BaseUrl + "/getOrderStatusExtended.do";
-            var request = new GetOrderStatusExtendedRequest(getOrderStatusParams);
-            request.userName = _settings.Username;
-            request.password = _settings.Password;
+            var request = new GetOrderStatusExtendedRequest(getOrderStatusParams)
+            {
+                userName = _settings.Username,
+                password = _settings.Password
+            };
 
-            var result = _networkClient.PostObjectViaUrlParams<GetOrderStatusExtendedResponse>(url, request);
+            var result = _networkClient.PostObjectViaUrlParams<GetOrderStatusExtendedResponse>(url, request, "GET");
+            return result;
+        }
+
+        /// <summary>
+        /// Для проверки вовлечённости карты в 3DS
+        /// </summary>
+        public VerifyEnrollmentResponse VerifyEnrollment(VerifyEnrollmentParams verifyEnrollmentParams)
+        {
+            var url = _settings.BaseUrl + "/verifyEnrollment.do";
+            var request = new VerifyEnrollmentRequest(verifyEnrollmentParams)
+            {
+                userName = _settings.Username,
+                password = _settings.Password
+            };
+
+            var result = _networkClient.PostObjectViaUrlParams<VerifyEnrollmentResponse>(url, request, "GET");
+            return result;
+        }
+
+        /// <summary>
+        /// Запрос статистики по платежам за период
+        /// </summary>
+        public GetLastOrdersForMerchantsResponse GetLastOrdersForMerchants(GetLastOrdersForMerchantsParams getLastOrdersForMerchantsParams)
+        {
+            var url = _settings.BaseUrl + "/getLastOrdersForMerchants.do";
+            var request = new GetLastOrdersForMerchantsRequest(getLastOrdersForMerchantsParams)
+            {
+                userName = _settings.Username,
+                password = _settings.Password
+            };
+
+            var result = _networkClient.PostObjectViaUrlParams<GetLastOrdersForMerchantsResponse>(url, request, "GET");
             return result;
         }
     }

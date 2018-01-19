@@ -44,21 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Params\GetLastOrdersForMerchantsParams.cs" />
     <Compile Include="Params\GetOrderStatusExtendedParams.cs" />
     <Compile Include="Params\GetOrderStatusParams.cs" />
     <Compile Include="Params\RefundParams.cs" />
     <Compile Include="Params\RegisterParams.cs" />
     <Compile Include="Params\ReverseParams.cs" />
     <Compile Include="Params\VerifyEnrollmentParams.cs" />
+    <Compile Include="Requests\GetLastOrdersForMerchantsRequest.cs" />
     <Compile Include="Requests\GetOrderStatusExtendedRequest.cs" />
     <Compile Include="Requests\GetOrderStatusRequest.cs" />
     <Compile Include="Requests\RefundRequest.cs" />
     <Compile Include="Requests\ReverseRequest.cs" />
+    <Compile Include="Requests\VerifyEnrollmentRequest.cs" />
+    <Compile Include="Response\GetLastOrdersForMerchantsResponse.cs" />
     <Compile Include="Response\GetOrderStatusExtendedResponse.cs" />
     <Compile Include="Response\GetOrderStatusResponse.cs" />
     <Compile Include="Response\RefundResponse.cs" />
     <Compile Include="Response\RegisterResponse.cs" />
     <Compile Include="Response\ReverseResponse.cs" />
+    <Compile Include="Response\VerifyEnrollmentResponse.cs" />
     <Compile Include="SbrfSettings.cs" />
     <Compile Include="Requests\RegisterRequest.cs" />
     <Compile Include="SbrfApiClient.cs" />

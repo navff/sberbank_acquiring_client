@@ -31,17 +31,70 @@ namespace SbrfClient.Response
         public string actionCodeDescription { get; set; }
 
         /// <summary>
-        /// Код ошибки. Возможны следующие варианты
+        /// Код ошибки
         /// </summary>
         public int errorCode { get; set; }
+
+        /// <summary>
+        /// Описание ошибки на языке, переданном в параметре Language в
+        /// запросе.
+        /// </summary>
         public string errorMessage { get; set; }
+
+        /// <summary>
+        /// Сумма платежа в копейках (или центах)
+        /// </summary>
         public long amount { get; set; }
+
+        /// <summary>
+        /// Код валюты платежа ISO 4217. Если не указан, считается равным 810
+        /// (российские рубли).
+        /// </summary>
         public int currency { get; set; }
+
+        /// <summary>
+        /// Дата регистрации заказа
+        /// </summary>
         public string date { get; set; }
+
+        /// <summary>
+        /// Описание заказа, переданное при его регистрации
+        /// </summary>
         public string orderDescription { get; set; }
+
+        /// <summary>
+        /// IP-адрес покупателя.
+        /// </summary>
         public string ip { get; set; }
 
-        public IEnumerable<MerchantOrderParams> merchantOrderParams { get; set; }
+        /// <summary>
+        ///  Дата/время авторизации
+        /// (только для запроса Extended)
+        /// </summary>
+        public string authDateTime { get; set; }
+
+        /// <summary>
+        /// Учётный номер авторизации платежа, который присваивается при
+        /// регистрации платежа (только для запроса Extended)
+        /// </summary>
+        public string authRefNum { get; set; }
+
+        /// <summary>
+        ///  Id терминала
+        /// </summary>
+        public string terminalId { get; set; }
+
+        /// <summary>
+        /// Элемент merchantOrderParams – присутствует в ответе, если в заказе содержатся дополнительные параметры продавца. Каждый дополнительный
+        /// параметр заказа представлен в отдельном элементе merchantOrderParams.
+        /// </summary>
+        public IEnumerable<NameValueParam> merchantOrderParams { get; set; }
+
+        /// <summary>
+        /// Какие-то дополнительные аттрибуты
+        /// </summary>
+        public IEnumerable<NameValueParam> attributes { get; set; }
+
         public CardAuthInfo cardAuthInfo { get; set; }
         public SecureAuthInfo secureAuthInfo { get; set; }
         public BindingInfo bindingInfo { get;set; }
@@ -49,22 +102,73 @@ namespace SbrfClient.Response
         public BankInfo bankInfo { get; set; }
     }
 
-    public class MerchantOrderParams
+    public class NameValueParam
     {
+        /// <summary>
+        /// Название дополнительного параметра
+        /// </summary>
         public string name { get; set; }
+
+        /// <summary>
+        /// Значение дополнительного параметра
+        /// </summary>
         public string value { get; set; }
     }
 
     public class CardAuthInfo
     {
+        /// <summary>
+        /// Маскированный номер карты, которая использовалась для оплаты.
+        /// Указан только после оплаты заказа. (Поле устарело?)
+        /// </summary>
         public string maskedPan { get; set; }
+
+        /// <summary>
+        /// Срок истечения действия карты в формате YYYYMM. Указан только
+        /// после оплаты заказа.
+        /// </summary>
         public int expiration { get; set; }
+
+        /// <summary>
+        /// Имя держателя карты. Указан только после оплаты заказа.
+        /// </summary>
         public string cardholderName { get; set; }
+
+        /// <summary>
+        /// Код авторизации платежа. Поле фиксированной длины (6 символов),
+        /// может содержать цифры и латинские буквы. Указан только после
+        /// оплаты заказа
+        /// </summary>
         public string approvalCode { get; set; }
+
+        /// <summary>
+        /// Были ли средства принудительно возвращены покупателю банком
+        /// </summary>
         public bool chargeback { get; set; }
+
+        /// <summary>
+        /// Наименование платёжной системы. Доступны следующие варианты.
+        /// </summary>
         public int paymentSystem { get; set; }
+
+        /// <summary>
+        /// Дополнительные сведения о корпоративных картах. Эти сведения
+        /// заполняются службой технической поддержки в консоли управления.
+        /// Если такие сведения отсутствуют, возвращается пустое значение
+        /// </summary>
         public string product { get; set; }
+
+        /// <summary>
+        /// Способ совершения платежа (платёж в с вводом карточных данных,
+        /// оплата по связке и т. п.)
+        /// </summary>
         public string paymentWay { get; set; }
+
+        /// <summary>
+        /// Маскированный номер карты, которая использовалась для оплаты.
+        /// Указан только после оплаты заказа.
+        /// </summary>
+        public string pan { get; set; }
     }
 
     public class SecureAuthInfo
