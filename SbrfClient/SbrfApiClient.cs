@@ -28,7 +28,7 @@ namespace SbrfClient
             var url = _settings.BaseUrl + "/registerPreAuth.do";
             RegisterPreAuthRequest request = new RegisterPreAuthRequest(registerParams)
             {
-                username = _settings.Username,
+                userName = _settings.Username,
                 password = _settings.Password
             };
             var result = _networkClient.PostObjectViaUrlParams<RegisterPreAuthResponse>(url, request);

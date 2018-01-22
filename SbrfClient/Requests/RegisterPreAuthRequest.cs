@@ -9,7 +9,7 @@ namespace SbrfClient.Requests
 {
     internal class RegisterPreAuthRequest : RegisterPreAuthParams
     {
-        public string username { get; set; }
+        public string userName { get; set; }
         public string password { get; set; }
 
         public RegisterPreAuthRequest(RegisterPreAuthParams registerPreAuthParams)
