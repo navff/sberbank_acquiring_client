@@ -35,6 +35,14 @@ namespace Tests
         }
 
         [TestMethod]
+        public void RegisterPreAuth_Ok_Test()
+        {
+            var client = new SbrfApiClient(_settings);
+            var result = client.RegisterPreAuth(CreateRegisterPreAuthParams());
+            Console.Out.WriteLine(JsonConvert.SerializeObject(result));
+        }
+
+        [TestMethod]
         public void Reverse_Error_Test()
         {
             var client = new SbrfApiClient(_settings);
@@ -53,17 +61,30 @@ namespace Tests
             var client = new SbrfApiClient(_settings);
             var result = client.Reverse(new ReverseParams
             {
-                orderId = "123",
+                orderId = "a5d970db-0cda-7adc-a5d9-70db000be085",
                 language = "ru"
             });
             Console.Out.WriteLine(JsonConvert.SerializeObject(result));
-            Assert.AreEqual(6, result.ErrorCode);
+  //          Assert.AreEqual(6, result.ErrorCode);
         }
 
 
         private RegisterParams CreateRegisterParams()
         {
             return new RegisterParams
+            {
+                amount = 123,
+                pageView = "DESKTOP",
+                currency = 643,
+                failUrl = "http://33kita.ru",
+                returnUrl = "http://33kita.ru",
+                orderNumber = Guid.NewGuid().ToString().Replace("-", "")
+            };
+        }
+
+        private RegisterPreAuthParams CreateRegisterPreAuthParams()
+        {
+            return new RegisterPreAuthParams
             {
                 amount = 123,
                 pageView = "DESKTOP",
@@ -102,7 +123,7 @@ namespace Tests
             var client = new SbrfApiClient(_settings);
             var result = client.Refund(new RefundParams
             {
-                orderId = "1a080048-9243-7176-1a08-0048000be085",
+                orderId = "a5d970db-0cda-7adc-a5d9-70db000be085",
                 amount = 10
             });
             Console.Out.WriteLine(JsonConvert.SerializeObject(result));
@@ -128,7 +149,7 @@ namespace Tests
             var client = new SbrfApiClient(_settings);
             var result = client.GetOrderStatusExtended(new GetOrderStatusExtendedParams
             {
-                orderId = "da8a081a-6beb-7d5b-da8a-081a000be085"
+                orderId = "a5d970db-0cda-7adc-a5d9-70db000be085"
             });
             Console.WriteLine(JsonConvert.SerializeObject(result));
         }

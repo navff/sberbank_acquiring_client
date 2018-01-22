@@ -22,6 +22,22 @@ namespace SbrfClient
         /// <summary>
         /// Иницциирование одностадийной оплаты заказа
         /// </summary>
+        public RegisterPreAuthResponse RegisterPreAuth(RegisterPreAuthParams registerParams)
+        {
+
+            var url = _settings.BaseUrl + "/registerPreAuth.do";
+            RegisterPreAuthRequest request = new RegisterPreAuthRequest(registerParams)
+            {
+                username = _settings.Username,
+                password = _settings.Password
+            };
+            var result = _networkClient.PostObjectViaUrlParams<RegisterPreAuthResponse>(url, request);
+            return result;
+        }
+
+        /// <summary>
+        /// Иницциирование одностадийной оплаты заказа
+        /// </summary>
         public RegisterResponse Register(RegisterParams registerParams)
         {
 
@@ -34,6 +50,7 @@ namespace SbrfClient
             var result = _networkClient.PostObjectViaUrlParams<RegisterResponse>(url, request);
             return result;
         }
+
 
         /// <summary>
         /// Для запроса отмены оплаты заказа используется запрос reverse.do. Функция отмены доступна в течение ограниченного времени
