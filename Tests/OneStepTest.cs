@@ -135,7 +135,7 @@ namespace Tests
             var client = new SbrfApiClient(_settings);
             var result = client.Refund(new RefundParams
             {
-                orderId = "a5d970db-0cda-7adc-a5d9-70db000be085",
+                orderId = "ed142471-b0b3-79ba-ed14-2471000be085",
                 amount = 10
             });
             Console.Out.WriteLine(JsonConvert.SerializeObject(result));
