@@ -287,3 +287,4 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 Tests/App.config
+/nuget.exe
