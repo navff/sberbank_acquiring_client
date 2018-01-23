@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Params\DepositParams.cs" />
     <Compile Include="Params\GetLastOrdersForMerchantsParams.cs" />
     <Compile Include="Params\GetOrderStatusExtendedParams.cs" />
     <Compile Include="Params\GetOrderStatusParams.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Params\RegisterPreAuthParams.cs" />
     <Compile Include="Params\ReverseParams.cs" />
     <Compile Include="Params\VerifyEnrollmentParams.cs" />
+    <Compile Include="Requests\DepositRequest.cs" />
     <Compile Include="Requests\GetLastOrdersForMerchantsRequest.cs" />
     <Compile Include="Requests\GetOrderStatusExtendedRequest.cs" />
     <Compile Include="Requests\GetOrderStatusRequest.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Requests\RegisterPreAuthRequest.cs" />
     <Compile Include="Requests\ReverseRequest.cs" />
     <Compile Include="Requests\VerifyEnrollmentRequest.cs" />
+    <Compile Include="Response\DepositResponse.cs" />
     <Compile Include="Response\GetLastOrdersForMerchantsResponse.cs" />
     <Compile Include="Response\GetOrderStatusExtendedResponse.cs" />
     <Compile Include="Response\GetOrderStatusResponse.cs" />

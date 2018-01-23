@@ -56,6 +56,18 @@ namespace Tests
         }
 
         [TestMethod]
+        public void Deposit_Ok_Test()
+        {
+            var client = new SbrfApiClient(_settings);
+            var result = client.Deposit(new DepositParams
+            {
+                orderId = "ed142471-b0b3-79ba-ed14-2471000be085",
+                amount = 101
+            });
+            Console.Out.WriteLine(JsonConvert.SerializeObject(result));
+        }
+
+        [TestMethod]
         public void Reverse_WrongOrderId_Test()
         {
             var client = new SbrfApiClient(_settings);

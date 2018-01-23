@@ -20,7 +20,7 @@ namespace SbrfClient
 
 
         /// <summary>
-        /// Иницциирование одностадийной оплаты заказа
+        /// Иницциирование двухстадийной оплаты заказа
         /// </summary>
         public RegisterPreAuthResponse RegisterPreAuth(RegisterPreAuthParams registerParams)
         {
@@ -32,6 +32,22 @@ namespace SbrfClient
                 password = _settings.Password
             };
             var result = _networkClient.PostObjectViaUrlParams<RegisterPreAuthResponse>(url, request);
+            return result;
+        }
+
+        /// <summary>
+        /// Иницциирование двухстадийной оплаты заказа
+        /// </summary>
+        public DepositResponse Deposit(DepositParams depositParams)
+        {
+
+            var url = _settings.BaseUrl + "/deposit.do";
+            DepositRequest request = new DepositRequest(depositParams)
+            {
+                userName = _settings.Username,
+                password = _settings.Password
+            };
+            var result = _networkClient.PostObjectViaUrlParams<DepositResponse>(url, request);
             return result;
         }
 
