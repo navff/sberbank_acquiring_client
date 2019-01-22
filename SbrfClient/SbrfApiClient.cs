@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using NLog;
 using SbrfClient.Http;
 using SbrfClient.Params;
 using SbrfClient.Requests;
@@ -12,10 +13,17 @@ namespace SbrfClient
     {
         private readonly SbrfSettings _settings;
         private NetworkClient _networkClient;
-        public SbrfApiClient(SbrfSettings settings)
+        private Logger _logger;
+
+        public SbrfApiClient(SbrfSettings settings, NLog.Logger logger = null)
         {
             _settings = settings;
-            _networkClient = new NetworkClient();
+            if (logger == null)
+            {
+                logger = LogManager.GetCurrentClassLogger();
+            }
+
+            _networkClient = new NetworkClient(logger);
         }
 
 

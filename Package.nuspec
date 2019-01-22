@@ -2,22 +2,24 @@
 <package >
   <metadata>
     <id>Sberbank.Acquiring.Client</id>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
     <authors>navff</authors>
     <owners>navff</owners>
     <projectUrl>https://github.com/navff/sberbank_acquiring_client</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Работа с эквайрингом Сбербанка</description>
-    <releaseNotes>Самая первая версия.</releaseNotes>
+    <releaseNotes>Самая первая версия</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>sbrf sberbank acquiring</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="8.0.3" />
+      <dependency id="Nlog" />
     </dependencies>
   </metadata>
   <files>
     <file src="SbrfClient\bin\Debug\*.dll" target="lib" />
     <file src="SbrfClient\bin\Debug\*.pdb" target="lib" />
+	<file src="SbrfClient\bin\Debug\*.xml" target="lib" />
   </files>
 
 </package>
