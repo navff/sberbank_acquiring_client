@@ -149,7 +149,7 @@ namespace SbrfClient.Response
         /// <summary>
         /// Наименование платёжной системы. Доступны следующие варианты.
         /// </summary>
-        public int paymentSystem { get; set; }
+        public string paymentSystem { get; set; }
 
         /// <summary>
         /// Дополнительные сведения о корпоративных картах. Эти сведения
