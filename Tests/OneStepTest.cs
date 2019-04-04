@@ -13,7 +13,6 @@ namespace Tests
     public class OneStepTest
     {
         private SbrfSettings _settings;
-        public TestContext TestContext { get; set; }
 
         public OneStepTest()
         {

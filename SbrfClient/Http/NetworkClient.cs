@@ -7,15 +7,22 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using NLog;
 using SbrfClient.Response;
 
 namespace SbrfClient.Http
 {
     public class NetworkClient
     {
+        private Logger _logger;
+
+        public NetworkClient(Logger logger)
+        {
+            _logger = logger;
+        }
+
         public HttpStatusCode GetStatusCode(string url, string method = "GET", string token = "")
         {
-            Console.WriteLine(url);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = method;
             request.Headers.Add("token", token);
@@ -23,12 +30,14 @@ namespace SbrfClient.Http
             try
             {
                 var response = (HttpWebResponse)request.GetResponse();
+                _logger.Debug($"GET: {url}, RESPONSE: {response}");
                 return response.StatusCode;
             }
             catch (WebException e)
             {
                 HttpWebResponse httpResponse = (HttpWebResponse)e.Response;
                 var statusCode = httpResponse.StatusCode;
+                _logger.Error($"GET: {url}, RESPONSE: {httpResponse}");
                 return statusCode;
             }
         }
@@ -40,15 +49,25 @@ namespace SbrfClient.Http
             request.Method = method;
             request.Headers.Add("token", token);
             request.ContentLength = 0;
-            using (var response = (HttpWebResponse)request.GetResponse())
+            try
             {
-                using (var reader = new StreamReader(response.GetResponseStream()))
+                using (var response = (HttpWebResponse)request.GetResponse())
                 {
-                    var objText = reader.ReadToEnd();
-                    
-                    return JsonConvert.DeserializeObject<T>(objText);
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        var objText = reader.ReadToEnd();
+                        _logger.Debug($"URL: {url}, RESPONSE: {objText}");
+                        return JsonConvert.DeserializeObject<T>(objText);
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                _logger.Error($"URL: {url}, ERROR:{e.Message}");
+                throw;
+            }
+
+            
 
         }
 
@@ -74,13 +93,22 @@ namespace SbrfClient.Http
             Stream newStream = request.GetRequestStream();
             newStream.Write(byteArray, 0, byteArray.Length);
             newStream.Close();
-
-            HttpWebResponse getResponse = (HttpWebResponse)request.GetResponse();
-            using (StreamReader sr = new StreamReader(getResponse.GetResponseStream()))
+            try
             {
-                string result = sr.ReadToEnd();
-                return (T) JsonConvert.DeserializeObject<T>(result);
+                HttpWebResponse getResponse = (HttpWebResponse)request.GetResponse();
+                using (StreamReader sr = new StreamReader(getResponse.GetResponseStream()))
+                {
+                    string result = sr.ReadToEnd();
+                    _logger.Debug($"POST: {url}, BODY: {json}, RESPONSE: {result}");
+                    return (T)JsonConvert.DeserializeObject<T>(result);
+                }
             }
+            catch (Exception e)
+            {
+                _logger.Error($"POST: {url}, BODY: {json}, ERROR: {e.Message}");
+                throw;
+            }
+            
         }
 
         /// <summary>
@@ -114,12 +142,16 @@ namespace SbrfClient.Http
                 HttpWebResponse getResponse = (HttpWebResponse)request.GetResponse();
                 using (StreamReader sr = new StreamReader(getResponse.GetResponseStream()))
                 {
-                    string result = sr.ReadToEnd();
-                    return (T)JsonConvert.DeserializeObject<T>(result);
+                    string json = sr.ReadToEnd();
+                    var result = (T)JsonConvert.DeserializeObject<T>(json);
+                    _logger.Debug($"POST: {url}, RESPONSE: {json}");
+                    return result;
                 }
+
             }
             catch (Exception e)
             {
+                _logger.Error($"POST: {url}, ERROR:{e.Message}");
                 Console.WriteLine(e);
                 throw;
             }
