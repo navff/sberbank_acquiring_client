@@ -179,5 +179,21 @@ namespace SbrfClient
             var result = _networkClient.PostObjectViaUrlParams<GetLastOrdersForMerchantsResponse>(url, request, "GET");
             return result;
         }
+
+        /// <summary>
+        /// Запрос проведения платежа по связкам
+        /// </summary>
+        public PaymentOrderBindingResponse PaymentOrderBinding(PaymentOrderBindingParams paymentOrderBindingParams)
+        {
+            var url = _settings.BaseUrl + "/paymentOrderBinding.do";
+            var request = new PaymentOrderBindingRequest(paymentOrderBindingParams)
+            {
+                userName = _settings.Username,
+                password = _settings.Password
+            };
+
+            var result = _networkClient.PostObjectViaUrlParams<PaymentOrderBindingResponse>(url, request, "GET");
+            return result;
+        }
     }
 }

@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingsTests.cs" />
     <Compile Include="OneStepTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
