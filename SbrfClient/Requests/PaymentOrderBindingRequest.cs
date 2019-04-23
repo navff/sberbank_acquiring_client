@@ -14,12 +14,12 @@ namespace SbrfClient.Requests
 
         public PaymentOrderBindingRequest(PaymentOrderBindingParams paymentOrderBindingParams)
         {
-            this.BindingId = paymentOrderBindingParams.BindingId;
-            this.Cvc = paymentOrderBindingParams.Cvc;
-            this.Email = paymentOrderBindingParams.Email;
-            this.Ip = paymentOrderBindingParams.Ip;
-            this.Language = paymentOrderBindingParams.Language;
-            this.MdOrder = paymentOrderBindingParams.MdOrder;
+            this.bindingId = paymentOrderBindingParams.bindingId;
+            this.cvc = paymentOrderBindingParams.cvc;
+            this.email = paymentOrderBindingParams.email;
+            this.ip = paymentOrderBindingParams.ip;
+            this.language = paymentOrderBindingParams.language;
+            this.mdOrder = paymentOrderBindingParams.mdOrder;
         }
     }
 }

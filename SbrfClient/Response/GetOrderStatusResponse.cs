@@ -20,7 +20,7 @@ namespace SbrfClient.Response
         public int ErrorCode { get; set; }
 
         /// <summary>
-        /// Описание ошибки на языке, переданном в параметре Language в запросе
+        /// Описание ошибки на языке, переданном в параметре language в запросе
         /// </summary>
         public string ErrorMessage { get; set; }
 

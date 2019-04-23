@@ -25,7 +25,7 @@ namespace SbrfClient.Response
         public int actionCode { get; set; }
 
         /// <summary>
-        /// Расшифровка кода ответа на языке, переданном в параметре Language
+        /// Расшифровка кода ответа на языке, переданном в параметре language
         /// в запросе
         /// </summary>
         public string actionCodeDescription { get; set; }
@@ -36,7 +36,7 @@ namespace SbrfClient.Response
         public int errorCode { get; set; }
 
         /// <summary>
-        /// Описание ошибки на языке, переданном в параметре Language в
+        /// Описание ошибки на языке, переданном в параметре language в
         /// запросе.
         /// </summary>
         public string errorMessage { get; set; }

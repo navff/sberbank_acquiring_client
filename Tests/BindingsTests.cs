@@ -41,11 +41,29 @@ namespace Tests
             var orderWithBinding = orders.orderStatuses.FirstOrDefault(o => o.bindingInfo != null);
             Assert.IsNotNull(orderWithBinding);
 
+
+            // создаём новый заказ с заданным bindingId. Типа заказ предполагает,
+            // что его будут оплачивать по связкам
+            var registerParams = new RegisterParams
+            {
+                amount = 123,
+                pageView = "DESKTOP",
+                currency = 643,
+                failUrl = "http://33kita.ru",
+                returnUrl = "http://33kita.ru",
+                orderNumber = Guid.NewGuid().ToString().Replace("-", ""),
+                bindingId = orderWithBinding.bindingInfo.bindingId
+            };
+
+            // регистрируем новый заказ
+            var registerResult = client.Register(registerParams);
+
+            // проводим только что созданны заказ с bindingId одного из предыдущих заказов
             var bindingPaymentResult = client.PaymentOrderBinding(new PaymentOrderBindingParams
             {
-                MdOrder = "34803399-74c2-71fa-9fe3-4da2000be085", //orderWithBinding.merchantOrderParams.First(p => p.name == "mdOrder").value,
-                BindingId = orderWithBinding.bindingInfo.bindingId,
-                Ip = "192.168.0.1"
+                mdOrder = registerResult.OrderId, //orderWithBinding.merchantOrderParams.First(p => p.name == "mdOrder").value,
+                bindingId = orderWithBinding.bindingInfo.bindingId,
+                ip = "192.168.0.1"
             });
             Assert.IsTrue(bindingPaymentResult.errorCode == 0);
 

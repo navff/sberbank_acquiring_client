@@ -192,7 +192,7 @@ namespace SbrfClient
                 password = _settings.Password
             };
 
-            var result = _networkClient.PostObjectViaUrlParams<PaymentOrderBindingResponse>(url, request, "GET");
+            var result = _networkClient.PostObjectViaUrlParams<PaymentOrderBindingResponse>(url, request, "POST");
             return result;
         }
     }
