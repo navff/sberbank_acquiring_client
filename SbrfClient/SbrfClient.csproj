@@ -37,7 +37,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.6.2\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -58,6 +58,7 @@
     <Compile Include="Params\GetLastOrdersForMerchantsParams.cs" />
     <Compile Include="Params\GetOrderStatusExtendedParams.cs" />
     <Compile Include="Params\GetOrderStatusParams.cs" />
+    <Compile Include="Params\PaymentOrderBindingParams.cs" />
     <Compile Include="Params\RefundParams.cs" />
     <Compile Include="Params\RegisterParams.cs" />
     <Compile Include="Params\RegisterPreAuthParams.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Requests\GetLastOrdersForMerchantsRequest.cs" />
     <Compile Include="Requests\GetOrderStatusExtendedRequest.cs" />
     <Compile Include="Requests\GetOrderStatusRequest.cs" />
+    <Compile Include="Requests\PaymentOrderBindingRequest.cs" />
     <Compile Include="Requests\RefundRequest.cs" />
     <Compile Include="Requests\RegisterPreAuthRequest.cs" />
     <Compile Include="Requests\ReverseRequest.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Response\GetLastOrdersForMerchantsResponse.cs" />
     <Compile Include="Response\GetOrderStatusExtendedResponse.cs" />
     <Compile Include="Response\GetOrderStatusResponse.cs" />
+    <Compile Include="Response\PaymentOrderBindingResponse.cs" />
     <Compile Include="Response\RefundResponse.cs" />
     <Compile Include="Response\RegisterPreAuthResponse.cs" />
     <Compile Include="Response\RegisterResponse.cs" />
