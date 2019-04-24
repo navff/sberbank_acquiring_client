@@ -52,7 +52,8 @@ namespace Tests
                 failUrl = "http://33kita.ru",
                 returnUrl = "http://33kita.ru",
                 orderNumber = Guid.NewGuid().ToString().Replace("-", ""),
-                bindingId = orderWithBinding.bindingInfo.bindingId
+                bindingId = orderWithBinding.bindingInfo.bindingId,
+                features = "AUTO_PAYMENT"
             };
 
             // регистрируем новый заказ
